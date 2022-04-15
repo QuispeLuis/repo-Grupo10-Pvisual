@@ -9,7 +9,41 @@ public class Empleado {
 	private String mail;
 	private int sueldo;
 	private int horastrabajadas;
-	
+
+	public Empleado() { // constructor por defecto
+		super();
+	}
+
+	public Empleado(String nombre, int legajo, int horastrabajadas) {
+		super();
+		this.nombre = nombre;
+		this.horastrabajadas = horastrabajadas;
+		if (legajo == 0) {
+			this.legajo = -9999;
+		}
+		else {
+			this.legajo=legajo;
+		}
+	}
+
+	public Empleado(String nombre, LocalDate fingreso, int horastrabajadas) {
+		super();
+		this.nombre = nombre;
+		if (fingreso == null) {
+			this.fingreso = LocalDate.of(1900, 01, 01);
+		}
+		else {
+			this.fingreso = fingreso;
+		}
+		this.horastrabajadas = horastrabajadas;
+	}
+
+	public Empleado(String nombre, int horastrabajadas) {
+		super();
+		this.nombre = nombre;
+		this.horastrabajadas = horastrabajadas;
+	}
+
 	public Empleado(String nombre, LocalDate fingreso, int legajo, String mail, int horastrabajadas) {
 		super();
 		this.nombre = nombre;
@@ -17,15 +51,16 @@ public class Empleado {
 		this.legajo = legajo;
 		this.mail = mail;
 		this.horastrabajadas = horastrabajadas;
-		obtenerSueldo();
+		this.sueldo = obtenerSueldo();
+
 	}
+	
 
 	public int obtenerSueldo() {
-		if (horastrabajadas<=160) {
-			this.sueldo=horastrabajadas*600;
-		}
-		else {
-			this.sueldo=(160*600)+(horastrabajadas-160)*650;
+		if (horastrabajadas <= 160) {
+			this.sueldo = horastrabajadas * 600;
+		} else {
+			this.sueldo = (160 * 600) + (horastrabajadas - 160) * 650;
 		}
 		return this.sueldo;
 	}
